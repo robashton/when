@@ -24,15 +24,7 @@ when("a folder is packaged with default configurations", function() {
 
 With the output
 
-```
-  When a folder is packaged with default configurations
-    then file_should_be_round_tripped_correctly('./assets/textures/bars.jpg')           /
-    then file_should_be_round_tripped_correctly('./assets/shaders/particles.shader')    /
-    then file_should_be_round_tripped_correctly('./assets/shaders/particles.fragment')  X
-    then file_should_be_round_tripped_correctly('./assets/sounds/pigeon.wav')           /
-    then file_should_be_round_tripped_correctly('./assets/textures/bars.jpg')           /
-    then file_should_be_round_tripped_correctly('./assets/models/hovercraft.json')      X
-```
+<img src="http://github.com/robashton/when/raw/master/images/full_example.png">
 
 Still interested?
 ------

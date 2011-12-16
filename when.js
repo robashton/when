@@ -3,8 +3,8 @@ var ConsoleOutput = require('./lib/consoleoutput.js').ConsoleOutput;
 var cleanMessageFromCallback = function(statement) {
   var startIndex = statement.indexOf('this.');
   startIndex = startIndex < 0 ? 0 : startIndex + 5;
-  var endIndex = statement.indexOf(')', startIndex) + 1;
-  return statement.substr(startIndex, endIndex - startIndex);
+  var endIndex = statement.indexOf(')', startIndex);
+  return statement.substr(startIndex, endIndex - startIndex).replace(/_/g, ' ');
 };
 
 var parseCallbackForExpectedMessages = function(callback) {
@@ -65,8 +65,8 @@ when.allTestsFinished = function(callback) {
 };
 
 when.printReport = function() {
-  var failedTestCount = when.output.passedTests;
-  var passedTestCount = when.output.failedTests; 
+  var failedTestCount = when.output.failedTests;
+  var passedTestCount = when.output.passedTests; 
   var total = failedTestCount + passedTestCount;
 
   if(failedTestCount > 0) {
