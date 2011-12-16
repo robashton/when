@@ -32,7 +32,7 @@ Make your test file, and run it with
 node mytests.js
 ```
 
-A test can look like
+A test file can look like
 
 ```javascript
 var when = require('when').when;
@@ -43,6 +43,11 @@ when("something happens that I want to assert on", function(then) {
     then("some condition is false", false);
   });
 });
+
+when.allTestsFinished(function() {
+  when.printReport();
+});
+
 ```
 
 Where the output would be
