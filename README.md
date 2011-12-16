@@ -1,6 +1,6 @@
 # When
 
-When is a test runner that allows me to write tests the way my tests want me to (largely with my own code), whilst still supporting a full asynchronous environment.
+When is a test runner that allows me to write tests the way I want to, whilst still giving readable output to the console. No process formalisation to be found here, just abstractions written appropriately around your own tests with hook-points for running and managing the asynchronous nature of the tests and delivering readable output.
 
 ## An example from one of my projects
 
