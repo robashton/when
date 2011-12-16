@@ -3,13 +3,47 @@ When
 
 When is a test runner that allows me to write tests the way my tests want me to (largely with my own code), whilst still supporting a full asynchronous environment.
 
+An example from one of my projects
+--------
+
+```javascript
+when("a folder is packaged with default configurations", function() {
+  swallowTest()
+    .buildFrom('./in/assets')
+    .into('./tmp/test_one.json')
+    .build(function() {
+        then(this.file_should_be_round_tripped_correctly('./assets/textures/bars.jpg'));
+        then(this.file_should_be_round_tripped_correctly('./assets/shaders/particles.shader'));
+        then(this.file_should_be_round_tripped_correctly('./assets/shaders/particles.fragment'));
+        then(this.file_should_be_round_tripped_correctly('./assets/sounds/pigeon.wav'));
+        then(this.file_should_be_round_tripped_correctly('./assets/textures/bars.jpg'));
+        then(this.file_should_be_round_tripped_correctly('./assets/models/hovercraft.json'));
+    });
+});
+```
+
+With the output
+
+```
+  When a folder is packaged with default configurations
+    then file_should_be_round_tripped_correctly('./assets/textures/bars.jpg')           /
+    then file_should_be_round_tripped_correctly('./assets/shaders/particles.shader')    /
+    then file_should_be_round_tripped_correctly('./assets/shaders/particles.fragment')  X
+    then file_should_be_round_tripped_correctly('./assets/sounds/pigeon.wav')           /
+    then file_should_be_round_tripped_correctly('./assets/textures/bars.jpg')           /
+    then file_should_be_round_tripped_correctly('./assets/models/hovercraft.json')      X
+```
+
+Still interested?
+------
+
 Make your test file, and run it with
 
 ```
 node mytests.js
 ```
 
-A test looks like
+A test can look like
 
 ```javascript
 var when = require('when').when;
@@ -101,21 +135,4 @@ AwesomeAsserts.prototype = {
 
 ```
 
-An example from one of my real projects
---------
 
-```javascript
-when("building 
-  swallowTest()
-    .buildFrom('./in/assets')
-    .into('./tmp/test_one.json')
-    .build(function() {
-        then(this.file_should_be_round_tripped_correctly('./assets/textures/bars.jpg'));
-        then(this.file_should_be_round_tripped_correctly('./assets/shaders/particles.shader'));
-        then(this.file_should_be_round_tripped_correctly('./assets/shaders/particles.fragment'));
-        then(this.file_should_be_round_tripped_correctly('./assets/sounds/pigeon.wav'));
-        then(this.file_should_be_round_tripped_correctly('./assets/textures/bars.jpg'));
-        then(this.file_should_be_round_tripped_correctly('./assets/models/hovercraft.json'));
-    });
-});
-```
