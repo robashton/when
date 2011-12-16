@@ -1,5 +1,5 @@
 { "name" : "When"
-, "description" : "The test harness that outputs readable reports but leaves control over structure in your hands."
+, "description" : "The test harness that does readable reports but leaves control over structure in your hands."
 , "keywords" : [ "testing", "tdd", "when", "then" ]
 , "version" : "0.1.0"
 , "dependencies": {
