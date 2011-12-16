@@ -36,6 +36,8 @@ Alternatively when more complicated set-up and asserts with nested callbacks are
 
 ```javascript
 when("something happens that i want to assert on", function(then) {
+
+  // Async method with a callback
   doSomeSetup(function() {
     then(this.some_value_should_match('some_input'));
     then(this.some_other_value_should_match('something'));  
@@ -54,15 +56,39 @@ test run failed
 ```
 
 Where I've written the following code to support my tests in whatever style I feel appropriate at the time
+Each assert is on an object that my set-up created and then used as the context for calling each 'then'
+Each assert returns a function that is passed a truth object to be invoked when whatever asynchronous code
+has been executed with the result of the assertion.
 
 ```javascript
+
+// A function we've got somewhere to perform some async set-up
+var doSomeSetup = function(callback) {
+
+  // We perform our amazing set-up
+  doSomethingElaboratelyAsync(function(data) {
+  
+    // Then we create an object that contains common assertions across our tests
+    var asserts = new AwesomeAsserts(data);
+
+    // And we call the provided callback in the context of the asserts (this is up to you)
+    callback.call(asserts);
+  });
+};
+
+// This is an object that contains the data created as a result of our set-up
 var AwesomeAsserts = function(data) {
   this.data = data;
 };
+
 AwesomeAsserts.prototype = {
+  
+  // And each of these is an assert over the provided data
   this_needs_to_match_something: function(input) {
     return function(truth) { truth(input === this.data.something); }
   },
+
+  // This one does something async before finally establishing truth
   this_needs_to_match_something_else = function(input) {
     return function(truth) {
       doSomethingAsync(this.data, function(output) {
@@ -72,12 +98,6 @@ AwesomeAsserts.prototype = {
   }
 };
 
-var doSomeSetup = function(callback) {
-  doSomethingElaboratelyAsync(function(data) {
-    var asserts = new AwesomeAsserts(data);
-    callback.call(asserts);
-  });
-};
 
 ```
 
