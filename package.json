@@ -1,0 +1,25 @@
+{ "name" : "When"
+, "description" : "A test harness that does readable output but puts control in your hands"
+, "keywords" : [ "testing", "tdd", "when", "then" ]
+, "version" : "0.1.0"
+, "dependencies": {
+    "colors" : ""
+  }
+, "homepage" : "http://github.com/robashton/when"
+, "author" : "Rob Ashton <robashton@codeofrob.com> (http://codeofrob.com)"
+, "repository" :
+  { "type" : "git"
+  , "url" : "https://github.com/robashton/when"
+  }
+, "bugs" :
+  { "email" : "when@codeofrob.com"
+  , "url" : "http://github.com/robashton/when/issues"
+  }
+, "main" : "./when.js"
+, "bin" : { "swallow" : "./when.js" }
+, "licenses" :
+  [ { "type" : "MIT +no-false-attribs"
+    , "url" : "http://github.com/robashton/when/raw/master/LICENSE"
+    }
+  ]
+}
