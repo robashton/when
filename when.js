@@ -3,7 +3,7 @@ var ConsoleOutput = require('./lib/consoleoutput.js').ConsoleOutput;
 var cleanMessageFromCallback = function(statement) {
   var startIndex = statement.indexOf('this.');
   startIndex = startIndex < 0 ? 0 : startIndex + 5;
-  var endIndex = statement.indexOf(')', startIndex);
+  var endIndex = statement.indexOf(')', startIndex) + 1;
   return statement.substr(startIndex, endIndex - startIndex).replace(/_/g, ' ');
 };
 
